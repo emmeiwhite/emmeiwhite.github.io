@@ -1,21 +1,22 @@
 .projects {
-  padding-bottom: 2rem;
-
-  &__bio-image {
+  .projects-wrapper {
+    width: 100vw;
     height: 30vh;
-    width: 100%;
-    background: 
-      linear-gradient(
+    background-image: linear-gradient(
         to right,
-        rgba($primary-color, 0.9),
-        rgba($primary-color, 0.3)
+        rgba($primary-color, 0.7),
+        rgba($primary-color, 0.5),
+        rgba($primary-color, 0.6),
+        rgba($primary-color, 0.7)
       ),
-      url('../img/model-1.jpg') center top;
+      url("./../img/model-1.jpg");
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
+
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    @include flexDisplay(row, center, flex-end);
+    margin-bottom: 2rem;
 
     .text-secondary {
       font-size: 2rem;
@@ -23,66 +24,68 @@
     }
   }
 
-  &__items {
-    width: 60vw;
-    margin: 2rem auto 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 2rem;
-  }
-
-  &__item {
-    position: relative;
-    border-bottom: 5px solid $secondary-color;
-    overflow: hidden;
-    cursor: pointer;
-
-    img {
-      width: 100%;
+  .project {
+    &__items {
+      width: 60vw;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 2rem;
     }
 
-    &::after {
-      content: '';
+    &__item {
+      position: relative;
+      border-bottom: 5px solid $secondary-color;
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        background: $secondary-color;
+        @include transition-ease;
+      }
+
+      &:hover {
+        &::after {
+          opacity: 0.9;
+          top: 0;
+          cursor: pointer;
+        }
+        .project__btn {
+          opacity: 1;
+        }
+      }
+    }
+    &__btns {
       position: absolute;
-      top: 100%;
-      left: 0;
+      top: 0%;
       height: 100%;
       width: 100%;
-      background: $secondary-color;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      text-align: center;
+    }
+
+    &__btn {
       opacity: 0;
+      color: set-text-color($secondary-color);
       @include transition-ease;
-    }
 
-    &:hover {
-      &::after {
-        top: 0;
-        opacity: 0.9;
+      &:hover {
+        color: set-text-color(set-text-color($secondary-color));
       }
-      .projects__btn {
-        opacity: 1;
-      }
-    }
-  }
-
-  &__btns {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    text-align: center;
-  }
-
-  &__btn {
-    opacity: 0;
-    color: set-text-color($secondary-color);
-    @include transition-ease;
-
-    &:hover {
-      color: set-text-color(set-text-color($secondary-color));
     }
   }
 
@@ -92,9 +95,6 @@
   }
 
   footer {
-    transform:
-      rotate(90deg)
-      translate(-3rem, -5rem);
+    transform: rotate(90deg) translate(-3rem, -5rem);
   }
-  
 }

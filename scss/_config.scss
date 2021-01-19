@@ -2,35 +2,53 @@ $primary-color: #272727;
 $secondary-color: #ff652f;
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.text-secondary {
+  color: $secondary-color;
 }
 
 @mixin transition-ease {
   transition: all 0.5s ease-in-out;
 }
 
+// Swapping colors :)
 @function set-text-color($color) {
   @if (lightness($color) > 40%) {
-    @return #000;
+    @return #000000;
   } @else {
     @return #fff;
   }
 }
 
+@mixin flexDisplay($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// MEDIA QUERIES (::)
+
 @mixin media-md {
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     @content;
   }
 }
 @mixin media-lg {
-  @media screen and (min-width: 1024px) {
+  @media (min-width: 1024px) {
     @content;
   }
 }
 @mixin media-xl {
-  @media screen and (min-width: 1600px) {
+  @media (min-width: 1600px) {
     @content;
   }
 }

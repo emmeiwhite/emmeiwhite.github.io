@@ -1,65 +1,64 @@
 .menu-btn {
   position: absolute;
   z-index: 1;
-  right: 1rem;
-  top: 1rem;
   height: 20px;
   width: 28px;
+  right: 1rem;
+  top: 1rem;
   cursor: pointer;
-  @include transition-ease;
-
   &__burger {
     position: absolute;
     right: 0;
     top: 0.5rem;
     width: 28px;
     height: 3px;
-    background: set-text-color($primary-color);
+    background-color: set-text-color($primary-color);
     @include transition-ease;
 
-    &::before {
-      content: '';
+    &:before {
+      content: "";
       position: absolute;
-      top: -8px;
+      top: -0.5rem;
       width: 28px;
       height: 3px;
-      background: set-text-color($primary-color);
-      @include transition-ease;
+      background-color: set-text-color($primary-color);
     }
 
-    &::after {
-      content: '';
+    &:after {
+      content: "";
       position: absolute;
-      top: 8px;
+      top: 0.5rem;
       width: 20px;
       height: 3px;
-      background: set-text-color($primary-color);
+      background-color: set-text-color($primary-color);
       @include transition-ease;
     }
 
     &.open {
-      transform: rotate(720deg);
+      transform: rotateX(360deg);
       background: transparent;
 
       &::before {
-        transform: rotate(45deg) translate(5px, 8px);
+        transform: rotate(45deg) translate(7px, 5px);
       }
-
       &::after {
         width: 28px;
-        transform: rotate(-45deg) translate(3px, -7px);
+        transform: rotate(-45deg) translate(7px, -5px);
       }
     }
   }
 }
 
-.nav {
+// nav and menu
+
+nav {
   position: fixed;
+  width: 100vw;
   top: 0;
   left: 0;
-  width: 100vw;
   opacity: 0.98;
   visibility: hidden;
+  @include flexDisplay(row, center, center);
 
   &.open {
     visibility: visible;
@@ -71,11 +70,11 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    width: 100%;
     overflow: hidden;
-    background: $primary-color;
-    list-style-type: none;
-    padding-right: 1rem;
+    background-color: $primary-color;
     transform: translateY(-100%);
+    padding-right: 1rem;
     @include transition-ease;
 
     &.open {
@@ -85,9 +84,10 @@
     &__item {
       transform: translateX(100vw);
       @include transition-ease;
+      color: $primary-color;
 
       &.open {
-       transform: translateX(0); 
+        transform: translateX(0);
       }
 
       &.active > a {
@@ -110,8 +110,9 @@
   }
 }
 
+// For the first time in the history of my career, I have used loops in CSS :)
 @for $i from 1 through 4 {
   .menu-nav__item:nth-child(#{$i}) {
-    transition-delay: ($i * 0.1s) + 0.15s;
+    transition-delay: ($i * 0.1s)+0.15s;
   }
 }

@@ -3,14 +3,14 @@
     visibility: hidden;
   }
 
-  .nav {
+  nav {
     visibility: visible;
 
     .menu-nav {
       display: block;
       transform: translateY(0);
       height: 100%;
-      background: transparent;
+      background-color: transparent;
       text-align: right;
 
       &__item {
@@ -24,22 +24,27 @@
     }
   }
 
-  .about__bio {
+  //   About Page
+  .about-wrapper__hero {
     font-size: 1.5rem;
   }
 
+  //   Projects
   .projects {
-    &__bio-image {
+    .projects-wrapper {
       height: 40vh;
+      .text-secondary {
+        font-size: 3rem;
+      }
     }
-    &__items {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .text-secondary {
-      font-size: 3rem;
+    .project {
+      &__items {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   }
 
+  //   Contact-Page
   .contact__list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -47,17 +52,18 @@
 
 @include media-lg {
   .projects {
-    &__items {
-      grid-template-columns: repeat(3, 1fr);
+    .projects-wrapper {
+      height: 50vh;
+    }
+    .project {
+      &__items {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+      }
     }
   }
+
   .contact__list {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@include media-xl {
-  .projects__bio-image {
-    height: 50vh;
   }
 }
